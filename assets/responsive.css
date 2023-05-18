@@ -1,0 +1,10 @@
+@media (max-width: 1050px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  aside {
+    padding: 200px;
+  }
+}
