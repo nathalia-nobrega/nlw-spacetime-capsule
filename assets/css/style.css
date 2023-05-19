@@ -2,12 +2,45 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-color: #9e9ea0 #2c2c31;
+  scrollbar-width: thin;
+}
+
+/* This will only work in Bink and Webkit-based browsers. If you are using Firefox, this will nor work */
+
+:root {
+  font-size: 16px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #2c2c31;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9e9ea0;
+}
+
+@keyframes entering {
+  from {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body {
   font-family: "Roboto", sans-serif;
+
   background-color: rgb(31, 31, 42);
   color: rgb(228, 222, 255);
+
   display: grid;
   grid-template-areas: "profile timeline";
   grid-template-columns: repeat(2, 1fr);
@@ -77,6 +110,8 @@ nav {
     rgba(68, 54, 109, 1) 15%,
     rgba(31, 31, 42, 1) 99%
   );
+
+  animation: entering 1s ease-in-out;
 }
 
 nav h1 {
@@ -84,8 +119,6 @@ nav h1 {
 }
 
 nav #about-me {
-  border-radius: 5px;
-
   width: 100%;
   height: 350px;
   margin-bottom: 40px;
@@ -99,6 +132,17 @@ nav #about-me {
 
   font-family: "Open Sans", sans-serif;
   text-align: center;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.018);
+  border-radius: 15px;
 }
 
 nav #about-me h3 {
@@ -135,6 +179,9 @@ nav a:hover {
 
 .memory-section {
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .date-memory-span {
@@ -145,8 +192,18 @@ nav a:hover {
   text-align: center;
 }
 
+nav .memory-section div {
+  overflow: hidden;
+  border-radius: 10px;
+}
 .memory-img {
   width: 100%;
   height: 450px;
   object-fit: contain;
+
+  transition: transform 0.3s ease-in-out;
+}
+
+nav .memory-section .memory-img:hover {
+  transform: scale(1.1);
 }
